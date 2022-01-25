@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+  
+}
+
+.App ul {
+  text-align: left;
+}
+
+.site  {
+  text-align: center;
+  display: inline-block;
+  border-style: solid;
+  padding: 2px;
+  margin: auto;
+  width: 300px;
+
+}
+
+.link a{
+  padding: 5px;
+  display: inline-block;
+  text-align: center;
+}
+
+form {
+  text-align: left;
+  margin: auto;
+  width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+

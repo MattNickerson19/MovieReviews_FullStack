@@ -1,0 +1,30 @@
+[
+    {
+        "name" : "The Shawshank Redemption",
+        "date" : "1994",
+        "actors" : ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
+        "rating" : 5,
+        "poster" : "/images/ShawshankRedemptionMoviePoster.jpeg"
+    },
+    {
+        "name" : "Inception",
+        "date" : "2010",
+        "actors" : ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
+        "rating" : 4,
+        "poster" : "/images/Inception.jpg"
+    },
+    {
+        "name" : "Intersteller",
+        "date" : "2014",
+        "actors" : ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+        "rating" : 4.5,
+        "poster" : "/images/Intersteller.jpg"
+    },
+    {
+        "name" : "Back to the Future",
+        "date" : "1985",
+        "actors" : ["Michael J. Fox", "Christopher Lloyd", "Lea Thompson"],
+        "rating" : 4,
+        "poster" : "/images/back-to-the-future.jpg"
+    }
+]
