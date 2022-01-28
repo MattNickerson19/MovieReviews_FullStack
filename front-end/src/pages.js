@@ -1,46 +1,54 @@
 import React, { useState } from "react";
 import './App.css';
-import { FaTrash } from "react-icons/fa";
 import {Link} from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Navbar from "react-bootstrap/Navbar";
+import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
+import Nav from "react-bootstrap/Nav";
 
 export function MovieList({movies = [], onRemoveMovie = f => f}){
     return (
-        <div>
+        <Container className="bg-dark" style={{height: "100rem"}}>
             <Header />
+            <Container>
+                <Row>
+                    
             {movies.map( (movie )=> {
-                return <Movie key={movie.name} {...movie} onRemove={onRemoveMovie}></Movie>
+                return <Col>
+                <Movie key={movie.name} {...movie} onRemove={onRemoveMovie}></Movie>
+                </Col>
             })}
-        </div>
+            </Row>
+            </Container>
+        </Container>
     );
 }
 
 function Movie({name, date, actors=[], rating, poster, onRemove = f => f}){
 
     return (
-        <div className="site">
-        <ul>
-            <img alt={name} src={poster} height={300}></img>
-            <li>
-                Name: {name}
-            </li>
-            <li>
-                Date: {date}
-            </li>
-            <li>
-            Actors:
-                <ul>
-                    {actors.map((actor, i) => {
-                    return <li key={i}>{actor}</li>
-                })}
-                </ul>
-            </li>
-            <li>
-                Rating: {rating}
-            </li>
-        </ul>
-        <button onClick={ () => onRemove(name)}>Remove
-            <FaTrash />
-        </button>
+        <div className= "bg-dark text-light">
+            <Card className="m-3"style={{ width: '20rem' }}>
+                <Card.Img style ={{ height: "25rem" }} variant="top" src={poster} />
+                <Card.Body style ={{ height: "20rem" }} className="bg-dark">
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Text>
+                    Date: {date} <br></br>
+                    Actors:
+                        <ul>
+                            {actors.map((actor, i) => {
+                            return <li key={i}>{actor}</li>
+                        })}
+                        </ul>
+                    Rating: {rating}
+                    </Card.Text>
+                    <Button variant="outline-light" onClick={ () => onRemove(name)}>Remove</Button>
+                </Card.Body>
+            </Card>
         </div>
         
     )
@@ -53,14 +61,15 @@ export function ErrorPage(){
 }
 function Header(){
     return(
-        <div>
-            <h1>Movie Reviews</h1>
-            <nav className="link">
-            <Link to="/">View Movie Reviews</Link>
-                <Link to="add">Add Movie Reviews</Link>
-            </nav>   
-        </div>
-      
+        <Navbar bg="dark">
+            <Container>
+                <NavbarBrand className="text-light text-lg">Movie Reviews</NavbarBrand>
+            <Nav className="text-light">
+            <Link className="p-2 text-light nav-link" to="/">View Movie Reviews</Link>
+            <Link className="p-2 text-light nav-link" to="add">Add Movie Reviews</Link>
+            </Nav> 
+            </Container>
+        </Navbar>
     )
   }
 
@@ -86,8 +95,9 @@ function Header(){
 
       
       return (
-          <div className="container">
+          <div className="bg-dark">
             <Header />
+            <Container style={{height: "50rem"}}>
             <form onSubmit={submit}>
             <div className="mb-3">
                 <label className="form-label">NAME</label>
@@ -124,9 +134,9 @@ function Header(){
                     onChange={event => setPoster("/images/Pulp_Fiction_(1994)_poster.jpeg")}
                     type="text" className="form-control" required/>
             </div>
-            <button className="btn btn-primary">Submit</button>
+            <button className="btn btn-outline-light">Submit</button>
             </form>
-            
+            </Container>
           </div>
           
       )

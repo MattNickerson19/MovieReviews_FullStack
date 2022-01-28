@@ -17,10 +17,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/hello', (req, res) => { res.send("Hello")});
-
-app.post('/hello', (req, res) => { res.send(`Hello there ${req.body.name}`)})
-
 
 app.post('/api/removeMovie', async (req, res) => {
     try {
@@ -96,6 +92,6 @@ app.get('/api/movies', async (req, res) => {
     }
 })
 
-//app.get('*', (req, res) => { res.sendFile(path.join(__dirname + '/build/index.html'))})
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname + '/build/index.html'))})
 
 app.listen(8000, () => console.log("listening on port 8000"));
