@@ -46,6 +46,7 @@ app.post('/api/addMovie', async (req, res) => {
         const client = await MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true});
         const db = client.db('my-movies');
 
+        console.log(req.body.name)
         await db.collection('movies').insertOne( {name:req.body.name, date:req.body.date, actors:req.body.actors,poster:req.body.poster, rating:req.body.rating})
 
         //const movieInfo = await db.collection('movies').find({name:req.params.name}).toArray();
@@ -92,6 +93,6 @@ app.get('/api/movies', async (req, res) => {
     }
 })
 
-app.get('*', (req, res) => { res.sendFile(path.join(__dirname + '/build/index.html'))})
+//app.get('*', (req, res) => { res.sendFile(path.join(__dirname + '/build/index.html'))})
 
 app.listen(8000, () => console.log("listening on port 8000"));

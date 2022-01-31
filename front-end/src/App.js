@@ -8,20 +8,29 @@ import Container from "react-bootstrap/Container"
 
 function App() {
   const [movies, setMovies] = useState([]);
+
   useEffect(() => {
     fetch('/api/movies')
       .then((response) => response.json())
       .then(setMovies)
-  }, [movies]);
+  }, []);
   
   
   return (
+    <Container className=" bd-dark">
     <Routes>
       <Route path="/" element= {<MovieList movies={movies} onRemoveMovie= {name => {
         const newMovies = movies.filter(movie => movie.name !== name);
         setMovies(newMovies);
+        const data = {name: name};
+        fetch('/api/removeMovie', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {"Content-Type": "application/json",}
+          })
+          
       }}/>} />
-      <Route path="/add" element= {<AddMovieForm onNewMovie= {(name, date, formatedActors, rating, poster)=> {
+      <Route path="/api/addMovie" element= {<AddMovieForm onNewMovie= {(name, date, formatedActors, rating, poster)=> {
         const newMovie = {
           "name": name,
           "date": date,
@@ -31,10 +40,16 @@ function App() {
         };
         movies.push(newMovie);
         setMovies(movies);
-        console.log(movies);
+
+        fetch('/api/addMovie', {
+          method: 'post',
+          body: JSON.stringify(newMovie),
+          headers: {"Content-Type": "application/json",}
+        })
       }}/>}/>
       <Route path="*" element= {<ErrorPage/>} />
     </Routes>
+    </Container>
     
   );
 }

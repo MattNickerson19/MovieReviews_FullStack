@@ -10,9 +10,10 @@ import Navbar from "react-bootstrap/Navbar";
 import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 import Nav from "react-bootstrap/Nav";
 
+
 export function MovieList({movies = [], onRemoveMovie = f => f}){
     return (
-        <Container className="bg-dark" style={{height: "100rem"}}>
+        <Container className="bg-dark" >
             <Header />
             <Container>
                 <Row>
@@ -30,26 +31,29 @@ export function MovieList({movies = [], onRemoveMovie = f => f}){
 
 function Movie({name, date, actors=[], rating, poster, onRemove = f => f}){
 
+    console.log(actors);
+
     return (
-        <div className= "bg-dark text-light">
-            <Card className="m-3"style={{ width: '20rem' }}>
+        <Container className= " text-light m-3 " style={{ width: '20rem' }}>
+            <Card bg="secondary" className="m-3"style={{ width: '20rem' }}>
                 <Card.Img style ={{ height: "25rem" }} variant="top" src={poster} />
                 <Card.Body style ={{ height: "20rem" }} className="bg-dark">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                    Date: {date} <br></br>
-                    Actors:
-                        <ul>
-                            {actors.map((actor, i) => {
-                            return <li key={i}>{actor}</li>
-                        })}
-                        </ul>
-                    Rating: {rating}
+                        <Col>Date: {date}</Col>
+                        <Col>Rating: {rating}</Col>
+                        <Col>Actors: </Col>
+                        <Col>{actors.map( (actor, i) => {
+                            return <Row style={{justifyContent: "center"}}key={i}>{actor}</Row>
+                        })} </Col>
                     </Card.Text>
+                    
+            
                     <Button variant="outline-light" onClick={ () => onRemove(name)}>Remove</Button>
                 </Card.Body>
             </Card>
-        </div>
+        </Container>
+        
         
     )
 }
@@ -66,7 +70,7 @@ function Header(){
                 <NavbarBrand className="text-light text-lg">Movie Reviews</NavbarBrand>
             <Nav className="text-light">
             <Link className="p-2 text-light nav-link" to="/">View Movie Reviews</Link>
-            <Link className="p-2 text-light nav-link" to="add">Add Movie Reviews</Link>
+            <Link className="p-2 text-light nav-link" to="api/addMovie">Add Movie Reviews</Link>
             </Nav> 
             </Container>
         </Navbar>
@@ -83,21 +87,20 @@ function Header(){
       const submit = e => {
           e.preventDefault();
           const formatedActors = actors.split(",");
-
           onNewMovie(name, date, formatedActors, rating, poster);
+      
           setName("");
           setDate("");
           setActors([]);
           setRating("");
-          setPoster("");
-          
+          setPoster(""); 
       };
 
       
       return (
-          <div className="bg-dark">
+          <div className="bg-dark text-light">
             <Header />
-            <Container style={{height: "50rem"}}>
+            <Container style={{height: "50rem", width:"50rem"}}>
             <form onSubmit={submit}>
             <div className="mb-3">
                 <label className="form-label">NAME</label>
@@ -131,8 +134,8 @@ function Header(){
                 <label className="form-label">POSTER</label>
                 <input 
                     value={poster}
-                    onChange={event => setPoster("/images/Pulp_Fiction_(1994)_poster.jpeg")}
-                    type="text" className="form-control" required/>
+                    onChange={event => setPoster(event.target.value)}
+                    type="file" className="form-control" required/>
             </div>
             <button className="btn btn-outline-light">Submit</button>
             </form>
