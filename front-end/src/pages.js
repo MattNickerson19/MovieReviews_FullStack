@@ -15,7 +15,7 @@ export function MovieList({movies = [], onRemoveMovie = f => f}){
     return (
         <Container className="bg-dark" >
             <Header />
-            <Container className="border border-secondary p-4 rounded">
+            <Container className="border border-secondary p-3 rounded">
                 <Row>
                     
             {movies.map( (movie )=> {
@@ -34,8 +34,8 @@ function Movie({name, date, actors=[], rating, poster, onRemove = f => f}){
     console.log(actors);
 
     return (
-        <Container className= " text-light m-3" style={{ width: '20rem' }}>
-            <Card bg="secondary" className="m-3"style={{ width: '20rem' }}>
+        <Container className= " text-light m-1 " style={{ width: '20rem' }}>
+            <Card bg="secondary" className="m-3 p-1"style={{ width: '20rem' }}>
                 <Card.Img style ={{ height: "25rem" }} variant="top" src={poster} />
                 <Card.Body style ={{ height: "20rem" }} className="bg-dark">
                     <Card.Title>{name}</Card.Title>
@@ -66,8 +66,8 @@ export function ErrorPage(){
 function Header(){
     return(
         <Navbar bg="dark">
-            <Container>
-                <NavbarBrand className="text-light text-lg">Movie Reviews</NavbarBrand>
+            <Container >
+                <NavbarBrand className="text-light ">Movie Reviews</NavbarBrand>
             <Nav className="text-light">
             <Link className="p-2 text-light nav-link" to="/">View Movie Reviews</Link>
             <Link className="p-2 text-light nav-link" to="api/addMovie">Add Movie Reviews</Link>
@@ -136,7 +136,7 @@ function Header(){
                 <input 
                     value={poster}
                     onChange={event => setPoster(event.target.value)}
-                    type="text" className="form-control" required/>
+                    type="file" className="form-control" required/>
             </div>
             <button className="btn btn-outline-light">Submit</button>
             </form>
