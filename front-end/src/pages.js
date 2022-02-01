@@ -15,7 +15,7 @@ export function MovieList({movies = [], onRemoveMovie = f => f}){
     return (
         <Container className="bg-dark" >
             <Header />
-            <Container>
+            <Container className="border border-secondary p-4 rounded">
                 <Row>
                     
             {movies.map( (movie )=> {
@@ -34,7 +34,7 @@ function Movie({name, date, actors=[], rating, poster, onRemove = f => f}){
     console.log(actors);
 
     return (
-        <Container className= " text-light m-3 " style={{ width: '20rem' }}>
+        <Container className= " text-light m-3" style={{ width: '20rem' }}>
             <Card bg="secondary" className="m-3"style={{ width: '20rem' }}>
                 <Card.Img style ={{ height: "25rem" }} variant="top" src={poster} />
                 <Card.Body style ={{ height: "20rem" }} className="bg-dark">
@@ -98,10 +98,11 @@ function Header(){
 
       
       return (
-          <div className="bg-dark text-light">
+          <div className="bg-dark text-light ">
             <Header />
-            <Container style={{height: "50rem", width:"50rem"}}>
-            <form onSubmit={submit}>
+            <Container style={{height: "50rem", width:"40rem"}}>
+            <form onSubmit={submit} className="border border-secondary p-5 rounded">
+            <h2>ENTER A NEW MOVIE</h2>
             <div className="mb-3">
                 <label className="form-label">NAME</label>
                 <input 
@@ -135,7 +136,7 @@ function Header(){
                 <input 
                     value={poster}
                     onChange={event => setPoster(event.target.value)}
-                    type="file" className="form-control" required/>
+                    type="text" className="form-control" required/>
             </div>
             <button className="btn btn-outline-light">Submit</button>
             </form>
